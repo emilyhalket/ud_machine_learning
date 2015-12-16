@@ -52,10 +52,10 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 
             ### use str.replace() to remove any instances of the words
             ### ["sara", "shackleton", "chris", "germani"]
-            etext.replace("sara", "")
-            etext.replace("chris","")
-            etext.replace("shackleton", "")
-            etext.replace("germani","")
+            etext = etext.replace("sara", "")
+            etext = etext.replace("chris","")
+            etext = etext.replace("shackleton", "")
+            etext = etext.replace("germani","")
             ### append the text to word_data
             word_data.append(etext)
             ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
@@ -81,10 +81,9 @@ pickle.dump( from_data, open("your_email_authors.pkl", "w") )
 
 
 from sklearn.feature_extraction.text import TfidfVectorizer
-from nltk.corpus import stopwords
-stwd = stopwords.words('english')
 
-tfidf = TfidfVectorizer(stop_words = stwd)
+tfidf = TfidfVectorizer(stop_words = 'english')
 tf_words = tfidf.fit_transform(word_data)
 
 print 'number of tfidf features' , len(tfidf.get_feature_names())
+print 'word number 34597', tfidf.get_feature_names()[34597]
