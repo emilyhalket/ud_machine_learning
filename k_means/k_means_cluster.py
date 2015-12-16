@@ -65,7 +65,22 @@ plt.show()
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
 
+from sklearn import cluster
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
 
+salaries= []
+stocks = []
+for f1, f2 in finance_features:
+    salaries.append(float(f1))
+    stocks.append(float(f2))
+
+rescaled_salary = scaler.fit_transform(salaries)
+rescaled_stock = scaler.fit_transform(stocks)
+
+km = cluster.KMeans(n_clusters=2)
+km.fit(data)
+pred = km.predict(data)
 
 
 ### rename the "name" parameter when you change the number of features
