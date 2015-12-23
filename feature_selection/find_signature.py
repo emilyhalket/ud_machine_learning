@@ -39,5 +39,30 @@ labels_train   = labels_train[:150]
 
 ### your code goes here
 
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+tree = DecisionTreeClassifier()
+tree.fit(features_train, labels_train)
+pred = tree.predict(features_test)
+
+print 'accuracy score of decision tree', accuracy_score(labels_test, pred)
+
+#look @ feature importances
+
+importances = tree.feature_importances_
+
+
+#find outlier features
+ctr = 0
+outliers =[]
+for i in importances:
+    if i > 0.2:
+        print ctr, i
+        outliers.append(vectorizer.get_feature_names()[ctr])
+    ctr += 1
+
+print "maximum importance", max(importances)
+print "word causing problems", outliers
+#look back at tfidf to get the feature importance
 
 

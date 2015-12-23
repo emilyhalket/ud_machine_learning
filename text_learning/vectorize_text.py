@@ -56,6 +56,8 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             etext = etext.replace("chris","")
             etext = etext.replace("shackleton", "")
             etext = etext.replace("germani","")
+            etext = etext.replace("sshacklensf", "")
+            etext = etext.replace("cgermannsf", "")
             ### append the text to word_data
             word_data.append(etext)
             ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
@@ -86,4 +88,4 @@ tfidf = TfidfVectorizer(stop_words = 'english')
 tf_words = tfidf.fit_transform(word_data)
 
 print 'number of tfidf features' , len(tfidf.get_feature_names())
-print 'word number 34597', tfidf.get_feature_names()[34597]
+#print 'word number 34597', tfidf.get_feature_names()[34597]

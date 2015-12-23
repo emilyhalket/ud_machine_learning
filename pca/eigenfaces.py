@@ -81,6 +81,11 @@ X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
 print "done in %0.3fs" % (time() - t0)
 
+#print variance explained by components (for quiz)
+
+varexp = pca.explained_variance_ratio_
+print 'percentage variance explained by components', varexp[0:2]
+
 
 ###############################################################################
 # Train a SVM classification model
@@ -128,19 +133,19 @@ def plot_gallery(images, titles, h, w, n_row=3, n_col=4):
 
 # plot the result of the prediction on a portion of the test set
 
-def title(y_pred, y_test, target_names, i):
-    pred_name = target_names[y_pred[i]].rsplit(' ', 1)[-1]
-    true_name = target_names[y_test[i]].rsplit(' ', 1)[-1]
-    return 'predicted: %s\ntrue:      %s' % (pred_name, true_name)
-
-prediction_titles = [title(y_pred, y_test, target_names, i)
-                         for i in range(y_pred.shape[0])]
-
-plot_gallery(X_test, prediction_titles, h, w)
-
-# plot the gallery of the most significative eigenfaces
-
-eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
-plot_gallery(eigenfaces, eigenface_titles, h, w)
-
-pl.show()
+# def title(y_pred, y_test, target_names, i):
+#     pred_name = target_names[y_pred[i]].rsplit(' ', 1)[-1]
+#     true_name = target_names[y_test[i]].rsplit(' ', 1)[-1]
+#     return 'predicted: %s\ntrue:      %s' % (pred_name, true_name)
+#
+# prediction_titles = [title(y_pred, y_test, target_names, i)
+#                          for i in range(y_pred.shape[0])]
+#
+# plot_gallery(X_test, prediction_titles, h, w)
+#
+# # plot the gallery of the most significative eigenfaces
+#
+# eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
+# plot_gallery(eigenfaces, eigenface_titles, h, w)
+#
+# pl.show()
